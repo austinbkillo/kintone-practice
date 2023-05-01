@@ -1,21 +1,15 @@
-// write a kintone function to update the stock of an item when an order is placed
-
-// code to be used directl in the kintone app - IIFE
-
 (function() {
   'use strict';
-  // let item = record.record.item_lookup.value;
   function test(event){
-    event.record.qty.error = 'You suck';
     return event;
   }
   function changeStock (event) {
     const order_type = event.record.order_type.value;
     const lookup = event.record.item_lookup.value;
-    const currentStock = event.record.current_stock.value
-    const quantity = event.record.qty.value
+    const currentStock = event.record.current_stock.value;
+    const quantity = event.record.qty.value;
     const endQty = order_type === 'Sale' ? currentStock - quantity : Number(currentStock) + Number(quantity);
-    
+
     const body = {
       'app': 6,
       'updateKey': {
